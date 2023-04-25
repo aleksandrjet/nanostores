@@ -26,11 +26,19 @@ interface Computed {
    */
   <Value extends any, OriginStores extends AnyStore[]>(
     stores: [...OriginStores],
-    cb: (...values: StoreValues<OriginStores>) => Value
+    cb: (...values: StoreValues<OriginStores>) => Value,
+    compare?: (
+      prev: StoreValue<OriginStores>,
+      curr: StoreValue<OriginStores>
+    ) => boolean
   ): ReadableAtom<Value>
   <Value extends any, OriginStore extends Store>(
     stores: OriginStore,
-    cb: (value: StoreValue<OriginStore>) => Value
+    cb: (value: StoreValue<OriginStore>) => Value,
+    compare?: (
+      prev: StoreValue<OriginStore>,
+      curr: StoreValue<OriginStore>
+    ) => boolean
   ): ReadableAtom<Value>
 }
 
